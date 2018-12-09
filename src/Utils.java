@@ -38,7 +38,7 @@ public class Utils {
   /**
    * converts any string representations of integers and converts them into int's
    * @param number number(string) to be converted into Integer
-   * @return
+   * @return converted string to number
    */
   public static int parseInt(String number){
     try{
