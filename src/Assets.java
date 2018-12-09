@@ -1,15 +1,15 @@
 import java.awt.image.BufferedImage;
 
 /**
- * This class will load all images immediatly so we dont have to do it everytime in our ImageLoader
+ * This class will initalize all images immediatly so we dont have to do it everytime in our ImageLoader
  * this method is only called once
  */
 public class Assets {
 
   // Width and height of sprite images
-  private static final int TEXTURE_WIDTH = 80;
+  private static final int TEXTURE_WIDTH = 80; // Default size of texture blocks
   private static final int TEXTURE_HEIGHT = 80;
-  private static final int CHARACTER_WIDTH = 30;
+  private static final int CHARACTER_WIDTH = 30; // Default size of character block
   private static final int CHARACTER_HEIGHT = 30;
 
   // List out all tiles in spritesheet
@@ -32,7 +32,6 @@ public class Assets {
     // 30x30 sprite
     SpriteSheet characterSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters.png"));
 
-    // Dirt with grass
     dirtWGrassOnTop = textureSheet.crop(0,0,TEXTURE_WIDTH,TEXTURE_HEIGHT);
 
     dirt = textureSheet.crop(TEXTURE_WIDTH,0, TEXTURE_WIDTH, TEXTURE_HEIGHT);
