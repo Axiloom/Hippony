@@ -6,10 +6,15 @@ public class GameState extends State{
   private Player player;
   private World testWorld;
 
-  public GameState(Game game) {
-    super(game);
-    player = new Player(game,100,100); // Create a new player
-    testWorld = new World("res/worlds/world1.txt");
+  public GameState(Handler handler) {
+    super(handler);
+
+    testWorld = new World(handler, "res/worlds/world1.txt");
+
+    handler.setWorld(testWorld); // set the world as the gameworld
+
+    player = new Player(handler,100,100); // Create a new player
+
   }
 
   @Override

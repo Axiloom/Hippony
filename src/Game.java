@@ -6,18 +6,37 @@ import java.awt.Graphics;
  * here)
  */
 public class Game implements Runnable {
+
+
+
+
+
   private Display display; // Create a new display
-  public int width, height;
-  public String title;
+  private int width, height;
+  private  String title;
   private BufferStrategy bs; // Create a buffer to draw to
   private Graphics g; // This is our "paintbrush"
   private boolean running = false; // running state of game
   private Thread thread; // Create a thread for the game
-  private KeyManager keyManager; // create instance of keyManager to use keyListener
 
-  // States of our game
+  // States
   private State gameState;
   private State menuState;
+
+  // Input
+  private KeyManager keyManager; // create instance of keyManager to use keyListener
+
+  // Camera
+  private GameCamera gameCamera;
+
+  // Handler
+  private Handler handler;
+
+
+
+
+
+
 
   /**
    * This is the constructor that creates our game
@@ -42,9 +61,13 @@ public class Game implements Runnable {
 
     Assets.init(); // Initalize all sprite images
 
+    handler = new Handler(this); // Used to handle our variables
+
+    gameCamera = new GameCamera(handler, 0,0); // Create our game camera and initialize it to the starting position
+
     // Initalize our multiple game states
-    gameState = new GameState(this);
-    menuState = new MenuState(this);
+    gameState = new GameState(handler);
+    menuState = new MenuState(handler);
 
     State.setState(gameState); // Set the current gameState
 
@@ -74,7 +97,7 @@ public class Game implements Runnable {
 
     // If the canvas does not have a buffer strategy, we need to create one
     if (bs == null) {
-      display.getCanvas().createBufferStrategy(2); // We say we will be using 2 buffers
+      display.getCanvas().createBufferStrategy(3); // We say we will be using 2 buffers
       return; // Make sure we recheck before continuing
     }
 
@@ -139,6 +162,17 @@ public class Game implements Runnable {
     return keyManager;
   }
 
+  public GameCamera getGameCamera(){
+    return gameCamera;
+  }
+
+  public int getWidth(){
+    return width;
+  }
+
+  public int getHeight(){
+    return height;
+  }
 
 
 

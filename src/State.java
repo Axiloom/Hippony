@@ -6,14 +6,15 @@ import java.awt.Graphics;
 public abstract class State {
 
   private static State currentState = null; // Will hold what state we want to tick and render
-  protected Game game; // game object to be used by a state
+
+  protected Handler handler; // game object to be used by a state
 
   /**
    * Constuctor
-   * @param game game object to be used with a state
+   * @param handler handler to control our variables
    */
-  public State(Game game) {
-    this.game = game;
+  public State(Handler handler) {
+    this.handler = handler;
   }
 
   /**
